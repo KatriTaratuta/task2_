@@ -13,18 +13,18 @@ pipeline {
         stage('Getting repo') {
             steps {
                 echo 'clone the repo'
-                sh 'rm -fr MLOps_task2_2'
+                sh 'rm -fr task2_'
                 sh 'rm -fr requirements.txt'
-                sh 'git clone https://github.com/KatriTaratuta/MLOps_task2_2.git'
+                sh 'git clone https://github.com/KatriTaratuta/task2_.git'
             }
         }
         stage('Build') {
             steps {
                 echo 'stage 2 here'
-                sh 'python3 -m pip freeze > ./MLOps_task2_2/requirements.txt'
-                sh 'python3 -m pip install -r ./MLOps_task2_2/requirements.txt'
-                sh 'chmod u+x ./MLOps_task2_2/pipeline.sh'
-                sh './MLOps_task2_2/pipeline.sh'
+                sh 'python3 -m pip freeze > ./task2_/requirements.txt'
+                sh 'python3 -m pip install -r ./task2_/requirements.txt'
+                sh 'chmod u+x ./task2_/pipeline.sh'
+                sh './task2_/pipeline.sh'
             }
         }
     }
