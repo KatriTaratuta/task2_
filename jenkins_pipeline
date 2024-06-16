@@ -1,0 +1,31 @@
+#!/usr/bin/env groovy
+
+pipeline {
+    agent any
+    stages {
+        stage('Informing') {
+            steps {
+                echo '--- Environment info ---'
+                sh 'python3 --version'
+                sh 'python3 -m pip --version'
+            }
+        }
+        stage('Getting repo') {
+            steps {
+                echo 'clone the repo'
+                sh 'rm -fr MLOps_task2_2'
+                sh 'rm -fr requirements.txt'
+                sh 'git clone https://github.com/KatriTaratuta/MLOps_task2_2.git'
+            }
+        }
+        stage('Build') {
+            steps {
+                echo 'stage 2 here'
+                sh 'python3 -m pip freeze > ./MLOps_task2_2/requirements.txt'
+                sh 'python3 -m pip install -r ./MLOps_task2_2/requirements.txt'
+                sh 'chmod u+x ./MLOps_task2_2/pipeline.sh'
+                sh './MLOps_task2_2/pipeline.sh'
+            }
+        }
+    }
+}
